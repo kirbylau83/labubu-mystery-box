@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labubu Mystery Box</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <h1>🎁 Labubu Mystery Box</h1>
+    <div class="stats">
+      <div class="stat">
+        <span class="coin-icon">🪙</span>
+        <span id="coin-display">100</span>
+      </div>
+      <div class="stat">📦 <span id="boxes-opened">0</span> opened</div>
+      <div class="stat">🏆 <span id="collection-count">0/20</span></div>
+    </div>
+  </header>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <button class="nav-btn active" data-page="shop">🎁 Mystery Boxes</button>
+    <button class="nav-btn" data-page="collection">📚 Collection</button>
+  </nav>
+
+  <!-- Shop Page -->
+  <main id="page-shop" class="page active">
+    <div id="boxes-grid" class="boxes-grid"></div>
+  </main>
+
+  <!-- Collection Page -->
+  <main id="page-collection" class="page">
+    <div class="collection-header">
+      <h2>Your Collection</h2>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+      </div>
+      <div class="progress-text" id="progress-text">0 / 20 collected (0%)</div>
+    </div>
+    <div id="collection-container"></div>
+    <div style="text-align:center; margin-top: 30px;">
+      <button id="reset-btn" style="background:var(--accent2); color:#fff; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600;">Reset Progress</button>
+    </div>
+  </main>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay">
+    <!-- Opening animation -->
+    <div class="opening-box" id="opening-box">📦</div>
+
+    <!-- Character Reveal -->
+    <div class="reveal" id="reveal">
+      <div class="reveal-avatar" id="reveal-avatar"></div>
+      <div class="reveal-name" id="reveal-name"></div>
+      <div class="reveal-rarity" id="reveal-rarity"></div>
+      <div class="reveal-duplicate" id="reveal-duplicate"></div>
+      <button class="reveal-btn close-overlay">Collect!</button>
+    </div>
+
+    <!-- Math Challenge -->
+    <div class="math-challenge" id="math-challenge">
+      <div class="math-label">⚡ Math Challenge!</div>
+      <div class="math-equation" id="math-equation"></div>
+      <input type="number" class="math-input" id="math-input" placeholder="?" autocomplete="off" />
+      <div><button class="math-submit" id="math-submit-btn">Submit</button></div>
+      <div class="math-timer" id="math-timer">15</div>
+      <div class="math-reward-label" id="math-reward"></div>
+    </div>
+
+    <!-- Math Result -->
+    <div class="math-result" id="math-result">
+      <div class="math-result-icon" id="math-result-icon"></div>
+      <div class="math-result-text" id="math-result-text"></div>
+      <div class="math-result-coins" id="math-result-coins"></div>
+      <button class="reveal-btn close-overlay">Continue</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="characters.js"></script>
+  <script src="math.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
