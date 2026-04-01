@@ -167,12 +167,16 @@ body {
   line-height: 1.5;
 }
 
+.box-card.starter { border-color: #8d6e63; }
+.box-card.starter:hover { box-shadow: 0 0 25px rgba(141, 110, 99, 0.3); }
 .box-card.bronze { border-color: #cd7f32; }
 .box-card.bronze:hover { box-shadow: 0 0 25px rgba(205, 127, 50, 0.3); }
 .box-card.silver { border-color: #c0c0c0; }
 .box-card.silver:hover { box-shadow: 0 0 25px rgba(192, 192, 192, 0.3); }
 .box-card.gold { border-color: #ffd700; }
 .box-card.gold:hover { box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); }
+.box-card.diamond { border-color: #b9f2ff; }
+.box-card.diamond:hover { box-shadow: 0 0 25px rgba(185, 242, 255, 0.4); }
 
 /* ── Opening Animation Overlay ── */
 .overlay {
@@ -218,9 +222,14 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
-.reveal-emoji {
-  font-size: 6rem;
+.reveal-avatar {
   margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.reveal-avatar .sprite {
+  box-shadow: 0 0 30px rgba(255, 137, 6, 0.4);
 }
 
 .reveal-name {
@@ -422,7 +431,11 @@ body {
   filter: grayscale(1);
 }
 
-.char-emoji {
+.char-card .sprite {
+  margin: 0 auto 6px;
+}
+
+.char-locked-icon {
   font-size: 2.8rem;
   margin-bottom: 6px;
 }

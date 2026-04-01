@@ -1,3 +1,17 @@
+// ── Sprite helpers ──
+const SPRITE_COLS = 5;
+const SPRITE_ROWS = 3;
+
+function spriteStyle(char, size) {
+  const pctX = (char.col / (SPRITE_COLS - 1)) * 100;
+  const pctY = (char.row / (SPRITE_ROWS - 1)) * 100;
+  return `width:${size}px;height:${size}px;background:url('labubu-sprites.png') ${pctX}% ${pctY}% / ${SPRITE_COLS * 100}% ${SPRITE_ROWS * 100}%;border-radius:50%;display:inline-block;`;
+}
+
+function spriteHTML(char, size, extraClass = "") {
+  return `<div class="sprite ${extraClass}" style="${spriteStyle(char, size)}"></div>`;
+}
+
 // ── State ──
 let state = loadState();
 
@@ -156,7 +170,9 @@ function showCharacterReveal(char) {
   saveState();
   updateStats();
 
-  document.getElementById("reveal-emoji").textContent = char.emoji;
+  const revealAvatar = document.getElementById("reveal-avatar");
+  revealAvatar.innerHTML = spriteHTML(char, 140);
+
   document.getElementById("reveal-name").textContent = char.name;
 
   const rarityBadge = document.getElementById("reveal-rarity");
@@ -281,8 +297,12 @@ function renderCollection() {
       card.className = `char-card ${count > 0 ? "owned" : "locked"}`;
       card.style.borderColor = count > 0 ? conf.border : "";
 
+      const avatar = count > 0
+        ? spriteHTML(char, 80)
+        : `<div class="char-locked-icon">❓</div>`;
+
       card.innerHTML = `
-        <div class="char-emoji">${count > 0 ? char.emoji : "❓"}</div>
+        ${avatar}
         <div class="char-name">${count > 0 ? char.name : "???"}</div>
         ${count > 1 ? `<span class="char-count">×${count}</span>` : ""}
       `;

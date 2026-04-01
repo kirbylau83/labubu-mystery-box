@@ -1,31 +1,29 @@
+// Sprite sheet: labubu-sprites.png (5 columns x 3 rows)
+// Each character has a sprite position (row, col) in the grid
+
 const CHARACTERS = [
-  // Common (8)
-  { id: 1, name: "Classic Labubu", rarity: "common", emoji: "😊", color: "#a8d8ea" },
-  { id: 2, name: "Sleepy Labubu", rarity: "common", emoji: "😴", color: "#b8d4e3" },
-  { id: 3, name: "Happy Labubu", rarity: "common", emoji: "😄", color: "#f9e79f" },
-  { id: 4, name: "Grumpy Labubu", rarity: "common", emoji: "😤", color: "#f5b7b1" },
-  { id: 5, name: "Baby Labubu", rarity: "common", emoji: "👶", color: "#fadbd8" },
-  { id: 6, name: "Sitting Labubu", rarity: "common", emoji: "🧸", color: "#d5f5e3" },
-  { id: 7, name: "Waving Labubu", rarity: "common", emoji: "👋", color: "#d2b4de" },
-  { id: 8, name: "Peeking Labubu", rarity: "common", emoji: "🫣", color: "#aed6f1" },
+  // Common (5)
+  { id: 1,  name: "Classic Labubu",  rarity: "common",    row: 0, col: 0 },
+  { id: 2,  name: "Happy Labubu",    rarity: "common",    row: 0, col: 1 },
+  { id: 3,  name: "Grumpy Labubu",   rarity: "common",    row: 0, col: 2 },
+  { id: 4,  name: "Explorer Labubu", rarity: "common",    row: 0, col: 3 },
+  { id: 5,  name: "Safari Labubu",   rarity: "common",    row: 1, col: 0 },
 
-  // Uncommon (6)
-  { id: 9, name: "Space Labubu", rarity: "uncommon", emoji: "🚀", color: "#1a1a2e" },
-  { id: 10, name: "Chef Labubu", rarity: "uncommon", emoji: "👨‍🍳", color: "#fdebd0" },
-  { id: 11, name: "Pirate Labubu", rarity: "uncommon", emoji: "🏴‍☠️", color: "#6c3483" },
-  { id: 12, name: "Ninja Labubu", rarity: "uncommon", emoji: "🥷", color: "#2c3e50" },
-  { id: 13, name: "Wizard Labubu", rarity: "uncommon", emoji: "🧙", color: "#4a235a" },
-  { id: 14, name: "DJ Labubu", rarity: "uncommon", emoji: "🎧", color: "#e74c3c" },
+  // Uncommon (5)
+  { id: 6,  name: "Space Labubu",    rarity: "uncommon",  row: 0, col: 4 },
+  { id: 7,  name: "Forest Labubu",   rarity: "uncommon",  row: 1, col: 1 },
+  { id: 8,  name: "Dragon Labubu",   rarity: "uncommon",  row: 1, col: 2 },
+  { id: 9,  name: "Panda Labubu",    rarity: "uncommon",  row: 1, col: 4 },
+  { id: 10, name: "Lion Labubu",     rarity: "uncommon",  row: 2, col: 4 },
 
-  // Rare (4)
-  { id: 15, name: "Dragon Labubu", rarity: "rare", emoji: "🐉", color: "#c0392b" },
-  { id: 16, name: "Rainbow Labubu", rarity: "rare", emoji: "🌈", color: "#ff6b6b" },
-  { id: 17, name: "Crystal Labubu", rarity: "rare", emoji: "💎", color: "#76d7ea" },
-  { id: 18, name: "Golden Labubu", rarity: "rare", emoji: "✨", color: "#f1c40f" },
+  // Rare (3)
+  { id: 11, name: "Wizard Labubu",   rarity: "rare",      row: 2, col: 0 },
+  { id: 12, name: "Phantom Labubu",  rarity: "rare",      row: 2, col: 1 },
+  { id: 13, name: "Fairy Labubu",    rarity: "rare",      row: 2, col: 2 },
 
   // Legendary (2)
-  { id: 19, name: "Cosmic Labubu", rarity: "legendary", emoji: "🌌", color: "#0c0c3a" },
-  { id: 20, name: "Phantom Labubu", rarity: "legendary", emoji: "👻", color: "#8e44ad" },
+  { id: 14, name: "Cosmic Labubu",   rarity: "legendary", row: 1, col: 3 },
+  { id: 15, name: "Crystal Labubu",  rarity: "legendary", row: 2, col: 3 },
 ];
 
 const RARITY_CONFIG = {
@@ -37,25 +35,36 @@ const RARITY_CONFIG = {
 
 const BOX_TYPES = [
   {
+    id: "starter",
+    name: "Starter Box",
+    cost: 5,
+    color: "#8d6e63",
+    mathChance: 0.6,
+    mathReward: 10,
+    mathDifficulty: "easy",
+    characterPool: [
+      { rarity: "common", weight: 100 },
+    ],
+  },
+  {
     id: "bronze",
     name: "Bronze Box",
     cost: 10,
-    emoji: "🥉",
     color: "#cd7f32",
-    mathChance: 0.3,
+    mathChance: 0.5,
     mathReward: 15,
     mathDifficulty: "easy",
     characterPool: [
-      { rarity: "common", weight: 70 },
+      { rarity: "common", weight: 80 },
+      { rarity: "uncommon", weight: 20 },
     ],
   },
   {
     id: "silver",
     name: "Silver Box",
     cost: 25,
-    emoji: "🥈",
     color: "#c0c0c0",
-    mathChance: 0.3,
+    mathChance: 0.45,
     mathReward: 35,
     mathDifficulty: "medium",
     characterPool: [
@@ -67,14 +76,26 @@ const BOX_TYPES = [
     id: "gold",
     name: "Gold Box",
     cost: 50,
-    emoji: "🥇",
     color: "#ffd700",
-    mathChance: 0.35,
+    mathChance: 0.4,
     mathReward: 75,
     mathDifficulty: "hard",
     characterPool: [
       { rarity: "rare", weight: 40 },
       { rarity: "legendary", weight: 25 },
+    ],
+  },
+  {
+    id: "diamond",
+    name: "Diamond Box",
+    cost: 100,
+    color: "#b9f2ff",
+    mathChance: 0.35,
+    mathReward: 150,
+    mathDifficulty: "hard",
+    characterPool: [
+      { rarity: "rare", weight: 30 },
+      { rarity: "legendary", weight: 70 },
     ],
   },
 ];
